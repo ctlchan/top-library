@@ -28,6 +28,8 @@ function displayBooks(bookList) {
         let author = document.createElement('div');
         let pages = document.createElement('div');
         let status = document.createElement('div');
+        let statusText = document.createElement('div');
+        let statusUpdate = document.createElement('img');
 
         card.classList.add('card');
 
@@ -38,12 +40,20 @@ function displayBooks(bookList) {
         // Add information to author, pages, and status divs
         author.innerHTML = `<span class='bold'>Author: </span>${book.author}`;
         pages.innerHTML =`<span class='bold'>Pages: </span>${book.numPages}`;
-        status.innerHTML =`<span class='bold'>Status: </span>${book.complete ? 'Complete':'In progress'}`;
 
         // Nest created divs to parent card element
         card.appendChild(title);
         card.appendChild(author);
         card.appendChild(pages);
+
+
+
+        statusText.innerHTML =`<span class='bold'>Status: </span>${book.complete ? 'Complete':'In progress'}`;
+        statusUpdate.src = './icons/square-edit-outline.svg';
+        statusUpdate.addEventListener('click', showStatusMenu);
+        status.append(statusText, statusUpdate);
+        status.classList.add('status');
+
         card.appendChild(status);
 
 
@@ -106,6 +116,56 @@ function removeBook(e) {
     let targetIndex = e.target.parentElement.dataset.index;
     myLibrary.splice(targetIndex, 1);
     displayBooks(myLibrary);
+}
+
+function showStatusMenu(e) {
+
+    let menu = document.querySelector('div.pop-up');
+    menu.style.visibility = 'visible';
+
+    // Get buttons by querying, converting NodeList to Array, and destructuring
+    let [incomplete, complete] = Array.from(document.querySelectorAll('div.pop-up input'));
+
+    let targetIndex = e.target.parentElement.parentElement.dataset.index;
+
+    if (myLibrary[targetIndex].complete) {
+        complete.checked = true;
+    }
+    else {
+        incomplete.checked = true;
+    }
+
+
+    let confirm = document.querySelector('div.pop-up button');
+    confirm.addEventListener('click', () => {
+        menu.style.visibility = 'hidden';
+        updateStatus(complete, targetIndex);
+    });
+
+
+}
+
+function updateStatus(complete, index) {
+
+    let currentStatus = myLibrary[index].complete;
+
+    // Compare existing status (true or false) with whether "complete" was toggled -> toggle status if they aren't the same
+    if (complete.checked != currentStatus) {
+        myLibrary[index].complete = !myLibrary[index].complete;
+        displayBooks(myLibrary);
+        
+        /* Truth Table
+            complete.checked | currentStatus | action
+                    T        |       T       |  do nothing
+                    T        |       F       | toggle F to T
+                    F        |       T       | toggle T to F
+                    F        |       F       | do nothing
+
+            
+            Explanation: if complete.checked is False, then incomplete.checked is True, meaning currentStatus should be F
+        */
+    }
+
 }
 
 

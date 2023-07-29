@@ -21,7 +21,8 @@
 
 .book-list {
     display: grid;
-    grid-template-columns: repeat(8, 16%);
+    grid-template-columns: repeat(auto-fit, minmax(150px, 350px));
+    grid-template-rows: repeat(5, 1fr   );
     gap: 15px;
     list-style: none;
     padding: 15px;
@@ -31,14 +32,17 @@ form {
     display: flex;
     padding: 50px;
     flex-direction: column;
-    position: sticky;
     height: 50%;
     width: 50%;
+}
+
+.pop-up {
+    position: fixed;
+    visibility: hidden;
     border: 1px solid black;
     background-color: white;
     left: 25%;
-    right: 25%;
-    visibility: hidden;
+    top: 25%;
 }
 
 .action-buttons {
@@ -57,12 +61,33 @@ label {
     margin-top: 15px;
 }
 
-input {
+input, select {
     height: 32px;
     font-size: 24px;
+    padding-left: 4px;
 }
 
 .new-book-btn {
     height: 100%;
     width: 100%;
+}
+
+div > img {
+    height: 15px;
+    width: 15px;
+}
+
+div > img:hover {
+    transform: scale(1.1);
+}
+
+.status {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.update-status {
+    display: flex;
+    flex-direction: column;
 }
