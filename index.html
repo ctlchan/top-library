@@ -9,5 +9,31 @@
 </head>
 <body>
     <ul class="book-list"></ul>
+
+    
+    <form>
+        <h1>Add a new book</h1>
+
+        <label for="book-title">Title:</label>
+        <input type="text" name="book-title">
+
+        <label for="book-author">Author:</label>
+        <input type="text" name="book-author">
+
+        <label for="book-pages">Number of Pages:</label>
+        <input type="number" name="book-pages">
+
+
+        <label>Completion Status:</label>
+        <select name="status">
+            <option value="complete">Complete</option>
+            <option value="incomplete">Incomplete</option>
+        </select>
+
+        <div class="action-buttons">
+            <button type="button">Cancel</button>
+            <button type="submit">Add</button>
+        </div>
+    </form>
 </body>
 </html>
