@@ -1,4 +1,4 @@
-let myLibrary = [new Book('1984', 'George Orwell', 300, false),
+let myLibrary = [new Book('1984', 'George Orwell', 300, true),
                     new Book('Green Eggs and Ham', 'Dr. Seuss', 72, true)];
 
 function Book(title, author, numPages, complete) {
@@ -57,7 +57,7 @@ function displayBooks(bookList) {
         card.appendChild(status);
 
 
-        // TODO: Render Delete button
+        // Render Delete button
         let deleteBook = document.createElement('button');
         deleteBook.textContent = "Remove";
         deleteBook.addEventListener('click', removeBook);
@@ -137,11 +137,11 @@ function showStatusMenu(e) {
 
 
     let confirm = document.querySelector('div.pop-up button');
-    confirm.addEventListener('click', () => {
+    confirm.addEventListener('click', function hideMenu() {
         menu.style.visibility = 'hidden';
         updateStatus(complete, targetIndex);
+        confirm.removeEventListener('click', hideMenu);
     });
-
 
 }
 
@@ -162,7 +162,7 @@ function updateStatus(complete, index) {
                     F        |       F       | do nothing
 
             
-            Explanation: if complete.checked is False, then incomplete.checked is True, meaning currentStatus should be F
+            Explanation: if complete.checked is False, then incomplete.checked is True - thus, the state of complete.checked reflects the desired state of currentStatus
         */
     }
 
