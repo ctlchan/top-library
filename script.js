@@ -61,7 +61,6 @@ function displayBooks(bookList) {
         card.appendChild(pages);
 
 
-
         statusText.innerHTML =`<span class='bold'>Status: </span>${book.complete ? 'Complete':'In progress'}`;
         statusUpdate.src = './icons/square-edit-outline.svg';
         statusUpdate.addEventListener('click', showStatusMenu);
@@ -77,11 +76,13 @@ function displayBooks(bookList) {
         htmlBookList.appendChild(card);
     });
 
-    // Render "new book" button
+    // Render "new book" buttons
     let buttonContainer = document.createElement('li');
-    let newBookButton = document.createElement('button');
-    newBookButton.textContent = "+";
-    newBookButton.classList.add('new-book-btn', 'card');
+    let newBookButton = document.createElement('img');
+    newBookButton.src = './icons/plus.svg';
+    newBookButton.alt = 'Button to add a new book';
+    buttonContainer.classList.add('card', 'flex-full-center');
+    newBookButton.classList.add('new-book-btn');
     newBookButton.addEventListener('click', showAddForm); 
 
 

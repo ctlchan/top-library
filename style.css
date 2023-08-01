@@ -68,8 +68,8 @@ input, select {
 }
 
 .new-book-btn {
-    height: 100%;
-    width: 100%;
+    height: 50%;
+    width: 50%;
 }
 
 div > img {
@@ -105,4 +105,10 @@ div > img:hover {
 .flex-end {
     display: flex;
     justify-content: end;
+}
+
+.flex-full-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
