@@ -30,6 +30,7 @@ function displayBooks(bookList) {
         let status = document.createElement('div');
         let statusText = document.createElement('div');
         let statusUpdate = document.createElement('img');
+        let cardHeading = document.createElement('div');
 
         card.classList.add('card');
 
@@ -37,12 +38,25 @@ function displayBooks(bookList) {
         title.textContent = book.title;
         title.classList.add('book-title');
 
+
+        // Render Delete button
+        let deleteImg = document.createElement('img');
+        deleteImg.alt = 'Delete book';
+        deleteImg.src = './icons/close.svg';
+        deleteImg.addEventListener('click', removeBook);
+        deleteImg.classList.add('delete-icon');
+
+        cardHeading.appendChild(title);
+        cardHeading.appendChild(deleteImg);
+        cardHeading.classList.add('flex-space-between');
+        
+
         // Add information to author, pages, and status divs
         author.innerHTML = `<span class='bold'>Author: </span>${book.author}`;
         pages.innerHTML =`<span class='bold'>Pages: </span>${book.numPages}`;
 
         // Nest created divs to parent card element
-        card.appendChild(title);
+        card.appendChild(cardHeading);
         card.appendChild(author);
         card.appendChild(pages);
 
@@ -52,17 +66,9 @@ function displayBooks(bookList) {
         statusUpdate.src = './icons/square-edit-outline.svg';
         statusUpdate.addEventListener('click', showStatusMenu);
         status.append(statusText, statusUpdate);
-        status.classList.add('status');
+        status.classList.add('status', 'flex-space-between');
 
         card.appendChild(status);
-
-
-        // Render Delete button
-        let deleteBook = document.createElement('button');
-        deleteBook.textContent = "Remove";
-        deleteBook.addEventListener('click', removeBook);
-        card.appendChild(deleteBook);
-
 
         card.dataset.index = index;
         index++;

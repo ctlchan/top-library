@@ -91,3 +91,18 @@ div > img:hover {
     display: flex;
     flex-direction: column;
 }
+
+.delete-icon {
+    height: 32px;
+    width: 32px;
+}
+
+.flex-space-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-end {
+    display: flex;
+    justify-content: end;
+}
