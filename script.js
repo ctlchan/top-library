@@ -31,6 +31,8 @@ function displayBooks(bookList) {
         let statusText = document.createElement('div');
         let statusUpdate = document.createElement('img');
         let cardHeading = document.createElement('div');
+        let mainInfo = document.createElement('div');
+        let otherInfo = document.createElement('div');
 
         card.classList.add('card');
 
@@ -46,32 +48,33 @@ function displayBooks(bookList) {
         deleteImg.addEventListener('click', removeBook);
         deleteImg.classList.add('delete-icon');
 
+        // cardHeading = title + delete button
         cardHeading.appendChild(title);
         cardHeading.appendChild(deleteImg);
         cardHeading.classList.add('flex-space-between');
         
+        // Set up author div, append as mainInfo
+        author.textContent = `by ${book.author}`;
+        mainInfo.append(cardHeading, author);
 
-        // Add information to author, pages, and status divs
-        author.innerHTML = `<span class='bold'>Author: </span>${book.author}`;
         pages.innerHTML =`<span class='bold'>Pages: </span>${book.numPages}`;
 
-        // Nest created divs to parent card element
-        card.appendChild(cardHeading);
-        card.appendChild(author);
-        card.appendChild(pages);
-
-
+        // Create status div, and set-up behavior for updating the status
         statusText.innerHTML =`<span class='bold'>Status: </span>${book.complete ? 'Complete':'In progress'}`;
         statusUpdate.src = './icons/square-edit-outline.svg';
         statusUpdate.addEventListener('click', showStatusMenu);
         status.append(statusText, statusUpdate);
         status.classList.add('status', 'flex-space-between');
 
-        card.appendChild(status);
+        otherInfo.append(pages, status);
 
         card.dataset.index = index;
         index++;
 
+        // Append nested children to main .card div
+        card.append(mainInfo, otherInfo)
+
+        card.classList.add('flex-space-between-col')
 
         htmlBookList.appendChild(card);
     });
@@ -81,6 +84,7 @@ function displayBooks(bookList) {
     let newBookButton = document.createElement('img');
     newBookButton.src = './icons/plus.svg';
     newBookButton.alt = 'Button to add a new book';
+    buttonContainer.id = 'new-book-btn';
     buttonContainer.classList.add('card', 'flex-full-center');
     newBookButton.classList.add('new-book-btn');
     newBookButton.addEventListener('click', showAddForm); 
@@ -91,6 +95,7 @@ function displayBooks(bookList) {
 }
 
 function showAddForm() {
+    console.log('click');
     let form = document.querySelector('form');
     form.style.visibility = 'visible';
 }
@@ -133,7 +138,7 @@ function showStatusMenu(e) {
     // Get buttons by querying, converting NodeList to Array, and destructuring
     let [incomplete, complete] = Array.from(document.querySelectorAll('div.pop-up input'));
 
-    let targetIndex = e.target.parentElement.parentElement.dataset.index;
+    let targetIndex = e.target.parentElement.parentElement.parentElement.dataset.index;
 
     if (myLibrary[targetIndex].complete) {
         complete.checked = true;

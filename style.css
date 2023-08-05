@@ -1,9 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+:root {
+    font-family: 'Roboto', sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #f3f3f3;
+
+}
 
 .bold {
     font-weight: bold;
@@ -17,15 +24,16 @@
     border-radius: 12px;
     border: 1px solid black;
     padding: 15px;
+    background-color: white;
 }
 
 .book-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 350px));
-    grid-template-rows: repeat(5, 1fr   );
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(265px, 290px));
+    grid-auto-rows: minmax(125px, 180px);
+    gap: 18px;
     list-style: none;
-    padding: 15px;
+    padding: 18px;
 }
 
 form {
@@ -72,6 +80,10 @@ input, select {
     width: 50%;
 }
 
+#new-book-btn:hover {
+    background-color: #f3f3f3;
+}
+
 div > img {
     height: 15px;
     width: 15px;
@@ -90,6 +102,27 @@ div > img:hover {
 .update-status {
     display: flex;
     flex-direction: column;
+    top: 45%;
+    left: 45%;
+    border-radius: 18px;
+    padding: 15px;
+}
+
+.pop-up-heading {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.pop-up > button {
+    font-size: 16px;
+    padding: 8px 20px;
+    border-radius: 12px;
+    border: 1px black solid;
+}
+
+.radio {
+    margin-bottom: 15px;
 }
 
 .delete-icon {
@@ -102,6 +135,12 @@ div > img:hover {
     justify-content: space-between;
 }
 
+.flex-space-between-col {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
 .flex-end {
     display: flex;
     justify-content: end;
@@ -111,4 +150,18 @@ div > img:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+header {
+    display: flex;
+    height: 100px;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0px 2px 12px gray;
+}
+
+header > div {
+    margin-left: 50px;
+    font-size: 32px;
+    font-family: 'Josefin Sans';
 }
