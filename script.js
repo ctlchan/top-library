@@ -1,5 +1,4 @@
-let myLibrary = [new Book('1984', 'George Orwell', 300, true),
-                    new Book('Green Eggs and Ham', 'Dr. Seuss', 72, true)];
+let myLibrary = [];
 
 function Book(title, author, numPages, complete) {
     this.title = title;
