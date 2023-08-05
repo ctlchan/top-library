@@ -87,7 +87,7 @@ function displayBooks(bookList) {
     buttonContainer.id = 'new-book-btn';
     buttonContainer.classList.add('card', 'flex-full-center');
     newBookButton.classList.add('new-book-btn');
-    newBookButton.addEventListener('click', showAddForm); 
+    buttonContainer.addEventListener('click', showAddForm); 
 
 
     buttonContainer.appendChild(newBookButton);
